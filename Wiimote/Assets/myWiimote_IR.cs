@@ -49,6 +49,9 @@ public class myWiimote_IR : MonoBehaviour {
 			float y2 = (float)ir [1, 1] / 767f;
 
 			Debug.Log ("x1: " + x1 + "     y1: " + y1 + "     x2: " + x2 + "     y2: " + y2);
+			//transform.position = new Vector3( x1 * Time.deltaTime, 0.0f, y1 * Time.deltaTime);
+			transform.position = new Vector2( x1 * Time.deltaTime * 2 , 0.0f);
+		
 
 
 
