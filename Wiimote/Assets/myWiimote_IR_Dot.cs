@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using WiimoteApi;
 
-public class myWiimote_IR : MonoBehaviour {
+public class myWiimote_IR_Dot : MonoBehaviour {
 	Wiimote wiimote;
+	public float x1, y1, x2, y2;
+	public RectTransform Dot1;
+	public RectTransform Dot2;
+
 	// Use this for initialization
 	void Start () {
 
@@ -42,15 +46,19 @@ public class myWiimote_IR : MonoBehaviour {
 			ret = wiimote.ReadWiimoteData ();
 
 			float[,] ir = wiimote.Ir.GetProbableSensorBarIR ();
-			float x1 = (float)ir [0, 0];// / 1023f;
-			float y1 = (float)ir [0, 1];// / 767f;
+			x1 = (float)ir [0, 0] / 1023f;
+			y1 = (float)ir [0, 1] / 767f;
 
-			float x2 = (float)ir [1, 0] / 1023f;
-			float y2 = (float)ir [1, 1] / 767f;
+			x2 = (float)ir [1, 0] / 1023f;
+			y2 = (float)ir [1, 1] / 767f;
 
 			Debug.Log ("x1: " + x1 + "     y1: " + y1 + "     x2: " + x2 + "     y2: " + y2);
-			//transform.position = new Vector3( x1 * Time.deltaTime, 0.0f, y1 * Time.deltaTime);
-			transform.position = new Vector2( x1 * Time.deltaTime * 2 , 0.0f);
+
+			Dot1.anchorMin = new Vector2(x1,y1);
+			Dot1.anchorMax = new Vector2(x1,y1);
+
+			Dot2.anchorMin = new Vector2(x2,y2);
+			Dot2.anchorMax = new Vector2(x2,y2);
 		
 
 
