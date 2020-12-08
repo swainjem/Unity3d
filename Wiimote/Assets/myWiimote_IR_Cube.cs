@@ -10,12 +10,14 @@ public class myWiimote_IR_Cube : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		//Debug.Log ("FindWiimote: " +WiimoteManager.FindWiimotes());
+		Debug.Log ("FindWiimote: " +WiimoteManager.FindWiimotes());
 		Debug.Log ("Wiimote Found: "+WiimoteManager.HasWiimote());
 		//Debug.Log ("#Wiimotes: " + WiimoteManager.Wiimotes.Count);
+		wiimote = WiimoteManager.Wiimotes[0];
+		wiimote.SendPlayerLED(true, false, false, false);
+		wiimote.SetupIRCamera(IRDataType.BASIC);
 
 
-		
 	}
 		
 	// Update is called once per frame
